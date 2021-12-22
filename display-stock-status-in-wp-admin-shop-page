@@ -1,0 +1,22 @@
+<td class="line_cost" width="1%" data-sort-value="<?php echo 'In Stock Status'; ?>">
+	<span>
+	<?php
+	try {	
+		$p_id = $item['product_id'];
+		$product_info = wc_get_product( $p_id );
+		$stock_status = $product_info->get_stock_status();
+		$is_stock_managed = $product_info->get_manage_stock();
+		if ($is_stock_managed)
+		{
+			echo  $product_info->get_stock_quantity();
+		}
+		else {
+			echo $stock_status;
+		}
+	}
+	catch (Exception $e) {
+		echo 'Please contact your administrator.',  $e->getMessage(), "\n";
+	}	 
+	?>
+	</span>
+	</td>
